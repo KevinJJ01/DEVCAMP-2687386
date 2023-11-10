@@ -3,6 +3,7 @@ const dotenv= require ('dotenv') //leer archivos env
 const colors=require('colors')
 const connectarDB = require('./config/db')
 const bootcampRoutes = require('./routes/bootcampRoutes')
+const reviewsRoutes = require('./routes/reviewsRoutes')
 
 
 
@@ -20,6 +21,9 @@ app.use(express.json())
 
 app.use('/api/v1/devcamp/bootcamps',
     bootcampRoutes)
+
+app.use('/api/v1/devcamp/reviews',
+    reviewsRoutes)
 
 //rutas de prueba
 app.get('/prueba',(request, response)=>{
@@ -117,5 +121,17 @@ app.delete('/courses/:id', (req, res)=>{
 app.listen( process.env.PUERTO,()=>{
     console.log(`Servidor en ejecucion ${process.env.PUERTO}`.bgCyan.bgBlack.bold)
 
+})
+
+
+//rutas de reviews
+//endpoint
+//----------------------------------------- ENDPOINTS REVIEWS
+//traer todos los reviews
+app.get('/reviews', (req, res)=>{
+    res.json({
+        success: true,
+        message:"aqui se mostraran todos las reviews"
+    })
 })
 
